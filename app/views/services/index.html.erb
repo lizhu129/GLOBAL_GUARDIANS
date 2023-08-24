@@ -1,1 +1,16 @@
-<h1>Services</h1>
+<div class="container">
+  <h1>Services</h1>
+  <div class="d-flex flex-wrap">
+    <% @services.each do |service| %>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <img class="card-img-top" src="https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Card image cap">
+          <h5 class="card-title"><%=service.name%></h5>
+          <p class="badge badge-pill badge-info"><%=service.category%></p>
+          <p class="card-text"><%=service.description%></p>
+          <button class="btn btn-primary">Contact</button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
