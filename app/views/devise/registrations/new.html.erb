@@ -18,7 +18,7 @@
       <%= f.input :first_name, required: true %>
       <%= f.input :last_name, required: true %>
       <%= f.input :description, required: false %>
-      <%= f.input :image, required: false %>
+      <%= f.input :image, as: :file, required: false %>
     </div>
 
     <div class="form-actions">
