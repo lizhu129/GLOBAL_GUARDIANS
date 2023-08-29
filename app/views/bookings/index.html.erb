@@ -1,0 +1,26 @@
+<h1>My Bookings</h1>
+
+<table class="table table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>Status</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Total Price</th>
+      <th>Service</th>
+      <th>User</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bookings.each do |booking| %>
+      <tr>
+        <td><%= booking.status %></td>
+        <td><%= booking.start_date %></td>
+        <td><%= booking.end_date %></td>
+        <td><%= booking.total_price %>€</td>
+        <td><%= booking.service.name %></td>
+        <td><%= booking.user.email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
