@@ -1,18 +1,23 @@
 <div class="container">
   <h1>Services</h1>
-  <div class="d-flex flex-wrap">
+  <h6><%= @services.length %> services available </h6>
+  <div class="d-flex flex-wrap align-items-start">
     <% @services.each do |service| %>
-      <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <img class="card-img-top" src="https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Card image cap">
-          <h5 class="card-title"><%=service.name%></h5>
-          <p class="badge badge-pill badge-info"><%=service.category%></p>
-          <p class="card-text"><%=service.description%></p>
-          <%= link_to service_path(service) do %>
-            <button class="btn btn-primary">Explore</button>
-          <% end %>
+      <%= link_to service_path(service) do %>
+        <div class="text-decoration-none">
+          <div class="card my-2 border-0" style="width: 18rem;">
+            <div class="card-body">
+              <img class="card-img-top rounded" src="https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Card image cap">
+              <h6 class="card-title mt-3"><%=service.name.capitalize%></h6>
+              <p class="badge text-bg-secondary"><%=service.category%></p>
+              <p class="badge text-bg-<%= service.active ? "success" : "light"%>">
+                <%=service.active ? "Available" : "Unavailable"%>
+              </p>
+              <p class="card-text font-weight-light text-truncate"><%=service.description%></p>
+            </div>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>
