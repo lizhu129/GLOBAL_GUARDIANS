@@ -7,6 +7,6 @@
 require 'faker'
 
 service_category_array = ["Host family", "Babysitter", "Playmate", "Other", "Advise", "Emotionnal support", "Day outing", "Night outing", "Weekend outing"]
-20.times do
-  Service.create(active: true, category: service_category_array.sample, name: Faker::Marketing.buzzwords, description: Faker::Lorem.sentence(word_count: 3), min_service_day: 1, price_per_day: 20)
+100.times do
+  Service.create(active: true, category: service_category_array.sample, name: Faker::Marketing.buzzwords, description: Faker::Lorem.sentence(word_count: rand(20..80)), min_service_day: rand(3..10), price_per_day: rand(20..200))
 end
