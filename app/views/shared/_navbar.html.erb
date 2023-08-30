@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <%= link_to "/", class: "navbar-brand" do %>
-    <%= cl_image_tag ("logo_gg") %>
+    <%= cl_image_tag ("development/logo_gg") %>
   <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,10 +15,10 @@
           <%= link_to "Home", "/", class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Services", "services", class: "nav-link" %>
+          <%= link_to "Services", "/services", class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Bookings", "bookings", class: "nav-link" %>
+          <%= link_to "Bookings", "/bookings", class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to "Log out", destroy_user_session_path, class: "nav-link", data: { turbo_method: :delete } %>
