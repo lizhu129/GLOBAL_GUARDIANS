@@ -3,40 +3,35 @@
   <div class="row">
 
     <!-- Two-thirds column for services -->
-    <div class="col-md-8">
+    <div>
       <h1>Services</h1>
       <h6><%= @services.length %> services available </h6>
-      <div class="d-flex flex-wrap align-items-start">
+      <div class="cards-services">
         <% @services.each do |service| %>
           <%= link_to service_path(service) do %>
             <div class="card my-2 mx-1 border-0" style="width: 18rem;">
               <div class="card-body">
-                <img class="card-img-top rounded" src="https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Card image cap">
+                <% if service.photo.attached? %>
+                  <%= cl_image_tag service.photo.key, class: "card-img-top rounded", alt: "Card image cap" %>
+                <% else %>
+                  <img class="card-img-top rounded" src="https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Card image cap" class="card-img-top rounded">
+                <% end %>
                 <h6 class="card-title mt-3"><%=service.name.capitalize%></h6>
                 <p class="badge text-bg-secondary"><%=service.category%></p>
                 <p class="badge text-bg-<%= service.active ? "success" : "light"%>">
                   <%=service.active ? "Available" : "Unavailable"%>
                 </p>
                 <p class="card-text font-weight-light text-truncate"><small><%=service.description%></small></p>
-                <img src="<%= service.user.profile_image %>" class="card-img-top rounded-avatar" alt="User avatar">
-                <h5><%= service.user.first_name %> <%= service.user.last_name %></h5>
               </div>
+              <% if current_user.image.attached? %>
+                <%= cl_image_tag current_user.image.key, class: "card-trip-user avatar-bordered" %>
+              <% else %>
+                <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+              <% end %>
             </div>
           <% end %>
         <% end %>
-      </div>
-    </div>
-
-    <!-- One-third column for users -->
-    <div class="col-md-4">
-
-      <h2>Providers : </h2>
-      <% @users.each do |user| %>
-        <div class="card mb-4">
-          <img src="<%= user.profile_image %>" class="card-img-top rounded-avatar" alt="User avatar">
-          <h5 class="card-title"><%= user.first_name %> <%= user.last_name %></h5>
-        </div>
-      <% end %>
+      <div>
     </div>
 
   </div> <!-- End of row -->
