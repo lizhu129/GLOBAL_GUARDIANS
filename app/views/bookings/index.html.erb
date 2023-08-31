@@ -1,26 +1,65 @@
-<h1>My Bookings</h1>
 
-<table class="table table-bordered table-hover">
-  <thead class="thead-dark">
-    <tr>
-      <th>Status</th>
-      <th>Start Date</th>
-      <th>End Date</th>
-      <th>Total Price</th>
-      <th>Service</th>
-      <th>User</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @bookings.each do |booking| %>
-      <tr>
-        <td><%= booking.status %></td>
-        <td><%= booking.start_date %></td>
-        <td><%= booking.end_date %></td>
-        <td><%= booking.total_price %>€</td>
-        <td><%= booking.service.name %></td>
-        <td><%= booking.user.email %></td>
-      </tr>
+
+<div class="container mt-5">
+  <h2>Bookings on My Services</h2>
+  <div class="row">
+    <% @user_bookings.each do |booking| %>
+      <div class="col-md-6 mb-4">
+        <div class="card-booking">
+          <!-- De nouveau, remplacez par une image pertinente pour la réservation ou le service -->
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" class="card-img-top" />
+          <div class="card-booking-infos">
+            <h2><%= booking.service.name %></h2>
+            <p>
+              Status: <%= booking.status %><br>
+              Start Date: <%= booking.start_date %><br>
+              End Date: <%= booking.end_date %><br>
+              Total Price: <%= booking.total_price %>€<br>
+            </p>
+          </div>
+          <div class="card-actions">
+            <% if booking.start_date > Date.today %>
+              <% if ["pending", "declined"].include?(booking.status) %>
+                <%= form_with url: accept_booking_path(booking), method: :patch, class: "d-inline-block" do %>
+                  <%= submit_tag "Accept", class: "btn btn-success" %>
+                <% end %>
+              <% end %>
+
+              <% if ["pending", "accepted"].include?(booking.status) %>
+                <%= form_with url: decline_booking_path(booking), method: :patch, class: "d-inline-block" do %>
+                  <%= submit_tag "Decline", class: "btn btn-danger" %>
+                <% end %>
+              <% end %>
+            <% else %>
+              <span class="text-danger">Too late !</span>
+            <% end %>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
+
+
+<div class="container mt-5">
+  <h2>My Bookings</h2>
+  <div class="row">
+    <% @bookings.each do |booking| %>
+      <div class="col-md-6 mb-4">
+        <div class="card-booking">
+          <!-- Remplacez le lien vers l'image par une image pertinente pour la réservation ou le service -->
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" class="card-img-top" />
+          <div class="card-booking-infos">
+            <h2><%= booking.service.name %></h2>
+            <p>
+              Status: <%= booking.status %><br>
+              Start Date: <%= booking.start_date %><br>
+              End Date: <%= booking.end_date %><br>
+              Total Price: <%= booking.total_price %>€<br>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

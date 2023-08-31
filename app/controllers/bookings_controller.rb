@@ -3,6 +3,7 @@ class BookingsController < ApplicationController
 
   def index
     @bookings = Booking.where(user: current_user)
+    @user_bookings = Booking.joins(:service).where(services: { user_id: current_user.id })
   end
 
   def new
@@ -25,6 +26,18 @@ class BookingsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def accept
+    @booking = Booking.find(params[:id])
+    @booking.update(status: "accepted")
+    redirect_to bookings_path, notice: 'Booking was successfully accepted.'
+  end
+
+  def decline
+    @booking = Booking.find(params[:id])
+    @booking.update(status: "declined")
+    redirect_to bookings_path, notice: 'Booking was successfully declined.'
   end
 
   private
