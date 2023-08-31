@@ -14,7 +14,7 @@ unless User.exists?
       password_confirmation: 'password123',
       first_name: Faker::Name.first_name,
       last_name: Faker::Name.last_name,
-      profile_image: Faker::Avatar.image,
+      profile_image: Faker::Avatar.image, # DO NOT USE THIS IMAGE!
     )
   end
   User.create!(
@@ -23,7 +23,7 @@ unless User.exists?
     password_confirmation: 'thomas',
     first_name: 'Thomas',
     last_name: 'Murat',
-    profile_image: Faker::Avatar.image,
+    profile_image: Faker::Avatar.image, # DO NOT USE THIS IMAGE!
   )
 end
 
