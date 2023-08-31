@@ -1,0 +1,6 @@
+.rounded-avatar {
+  width: 70px;   /* adjust the size as needed */
+  height: 70px;
+  border-radius: 50%; /* makes the image round */
+  object-fit: cover; /* ensures the image covers the area without distortion */
+}
