@@ -23,8 +23,8 @@
                 </p>
                 <p class="card-text font-weight-light text-truncate"><small><%=service.description%></small></p>
               </div>
-              <% if current_user.image.attached? %>
-                <%= cl_image_tag current_user.image.key, class: "card-trip-user avatar-bordered" %>
+              <% if service.user.image.attached? %>
+                <%= cl_image_tag service.user.image.key, class: "card-trip-user avatar-bordered" %>
               <% else %>
                 <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
               <% end %>
