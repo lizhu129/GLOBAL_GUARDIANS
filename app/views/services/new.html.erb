@@ -1,0 +1,24 @@
+<div class="container">
+  <h2>Create a new service</h2>
+  <%= simple_form_for(@service) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <%= f.input :name,
+                  required: true,
+                  autofocus: true %>
+      <%= f.input :description,
+                  required: true %>
+      <%= f.input :category, :collection => ["Host family", "Babysitter", "Playmate", "Other", "Advise", "Emotionnal support", "Day outing", "Night outing", "Weekend outing"] %>
+      <%= f.input :price_per_day, required: true %>
+      <%= f.input :min_service_day, required: true %>
+      <%= f.input :active, as: :select, collection: [['Yes',true], ['No',false]], required: true %>
+      <%= f.input :photo, as: :file, required: false %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Submit" %>
+    </div>
+  <% end %>
+
+</div>

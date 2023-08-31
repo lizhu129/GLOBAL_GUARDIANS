@@ -3,6 +3,7 @@ class Service < ApplicationRecord
   has_many :users
   has_many :reviews, through: :bookings, dependent: :destroy
   belongs_to :user
+  has_one_attached :photo
 
   validates :name, presence: true, length: { minimum: 3 }
   validates :description, presence: true
