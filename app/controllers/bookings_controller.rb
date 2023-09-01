@@ -2,13 +2,24 @@ class BookingsController < ApplicationController
 
 
   def index
+    # Récupérer tous les bookings où user est current_user
     @bookings = Booking.where(user: current_user)
+
+    # Récupérer tous les bookings où service.user est current_user
     @user_bookings = Booking.joins(:service).where(services: { user_id: current_user.id })
+
+    # Exclure les bookings de @user_bookings de @bookings
+    @bookings = @bookings.where.not(id: @user_bookings.pluck(:id))
+
+    # liste combinée
+    @all_bookings = @bookings + @user_bookings
   end
 
   def new
     @service = Service.find(params[:service_id])
-    @booking = Booking.new
+    @booking = @service.bookings.new
+    @booking.start_date = params[:start_date]
+    @booking.end_date = params[:start_date]
   end
 
   def create

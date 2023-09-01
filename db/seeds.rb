@@ -6,6 +6,8 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
 
+
+
 unless User.exists?
   5.times do
     User.create!(
@@ -26,18 +28,31 @@ unless User.exists?
     profile_image: Faker::Avatar.image, # DO NOT USE THIS IMAGE!
   )
 end
-
 service_category_array = ["Host family", "Babysitter", "Playmate", "Other", "Advise", "Emotionnal support", "Day outing", "Night outing", "Weekend outing"]
-
-30.times do
-  Service.create!(
+15.times do
+  user = User.all.sample
+  service = Service.create!(
     active: true,
     category: service_category_array.sample,
     name: Faker::Marketing.buzzwords,
     description: Faker::Lorem.sentence(word_count: rand(20..80)),
     min_service_day: rand(3..10),
     price_per_day: rand(20..200),
-    user: User.all.sample
+    user: user
+  )
+
+  # Create availabilities for the service
+  Availability.create!(
+    start_date: Date.today + rand(1..30).days,
+    end_date: Date.today + rand(31..60).days,
+    monday: [true, false].sample,
+    tuesday: [true, false].sample,
+    wednesday: [true, false].sample,
+    thursday: [true, false].sample,
+    friday: [true, false].sample,
+    saturday: [true, false].sample,
+    sunday: [true, false].sample,
+    service: service
   )
 end
 
