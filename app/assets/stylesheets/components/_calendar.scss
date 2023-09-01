@@ -1,0 +1,39 @@
+.available-day {
+  background-color: lightgreen;
+  display: block;
+  text-align: center;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.simple-calendar {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.simple-calendar .day {
+  width: 14.28%;
+  padding: 10px;
+  border: 1px solid #eee;
+}
+
+.simple-calendar .weekend {
+  background-color: #f7f7f7;
+}
+
+.simple-calendar .today {
+  background-color: #e9ecef;
+}
+
+
+.booking-pending {
+  background-color: #d8c7c7; /* Choisissez une couleur de fond qui convient pour 'pending' */
+}
+
+.booking-accepted {
+  background-color: #c3eccd; /* Choisissez une couleur de fond qui convient pour 'accepted' */
+}
+
+.booking-declined {
+  background-color: #e6acb1; /* Choisissez une couleur de fond qui convient pour 'declined' */
+}

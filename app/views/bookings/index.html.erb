@@ -1,12 +1,11 @@
 
-
+<!--
 <div class="container mt-5">
   <h2>Bookings on My Services</h2>
   <div class="row">
     <% @user_bookings.each do |booking| %>
       <div class="col-md-6 mb-4">
         <div class="card-booking">
-          <!-- De nouveau, remplacez par une image pertinente pour la réservation ou le service -->
           <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" class="card-img-top" />
           <div class="card-booking-infos">
             <h2><%= booking.service.name %></h2>
@@ -40,14 +39,12 @@
   </div>
 </div>
 
-
 <div class="container mt-5">
   <h2>My Bookings</h2>
   <div class="row">
     <% @bookings.each do |booking| %>
       <div class="col-md-6 mb-4">
         <div class="card-booking">
-          <!-- Remplacez le lien vers l'image par une image pertinente pour la réservation ou le service -->
           <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" class="card-img-top" />
           <div class="card-booking-infos">
             <h2><%= booking.service.name %></h2>
@@ -62,4 +59,45 @@
       </div>
     <% end %>
   </div>
+</div>
+-->
+
+<div class="container mt-5">
+  <h2>My booking</h2>
+
+  <%= month_calendar events: @all_bookings, attribute: :start_date do |date, bookings| %>
+      <%= date %>
+      <% bookings.each do |booking| %>
+
+        <div class="booking-to-validate">
+
+          <div class="card booking-<%= booking.status %>">
+            <!-- Display booking information -->
+            <%= booking.service.name %><br>
+            Provide by: <%= booking.service.user.first_name %><br>
+            Booking by: <%= booking.user.first_name %><br>
+            Status: <%= booking.status %><br>
+
+            <!-- Buttons for Accepting or Declining the Booking -->
+            <% if booking.start_date > Date.today && booking.service.user == current_user %>
+
+              <% if ["pending", "declined"].include?(booking.status) %>
+                <%= form_with url: accept_booking_path(booking), method: :patch, class: "d-inline-block" do %>
+                  <%= submit_tag "Accept", class: "btn btn-success" %>
+                <% end %>
+              <% end %>
+
+              <% if ["accepted", "pending"].include?(booking.status) %>
+                <%= form_with url: decline_booking_path(booking), method: :patch, class: "d-inline-block" do %>
+                  <%= submit_tag "Decline", class: "btn btn-danger" %>
+                <% end %>
+              <% end %>
+
+            <% elsif booking.start_date <= Date.today %>
+              <span class="text-danger">Too late to change!</span>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+  <% end %>
 </div>

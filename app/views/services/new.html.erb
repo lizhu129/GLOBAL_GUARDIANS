@@ -4,6 +4,46 @@
     <%= f.error_notification %>
 
     <div class="form-inputs">
+      <%= f.input :name, required: true, autofocus: true %>
+      <%= f.input :description, required: true %>
+      <%= f.input :category, collection: ["Host family", "Babysitter", "Playmate", "Other", "Advise", "Emotionnal support", "Day outing", "Night outing", "Weekend outing"] %>
+      <%= f.input :price_per_day, required: true %>
+      <%= f.input :min_service_day, required: true %>
+      <%= f.input :active, as: :select, collection: [['Yes',true], ['No',false]], required: true %>
+      <%= f.input :photo, as: :file, required: false %>
+
+      <%= f.simple_fields_for :availability do |avail_form| %>
+        <%= avail_form.input :start_date, label: 'Date de début', as: :date, required: true %>
+        <%= avail_form.input :end_date, label: 'Date de fin', as: :date, required: true %>
+        <%= avail_form.input :monday, as: :boolean, label: 'Lundi', inline_label: 'Lundi' %>
+        <%= avail_form.input :tuesday, as: :boolean, label: 'Mardi', inline_label: 'Mardi' %>
+        <%= avail_form.input :wednesday, as: :boolean, label: 'Mercredi', inline_label: 'Mercredi' %>
+        <%= avail_form.input :thursday, as: :boolean, label: 'Jeudi', inline_label: 'Jeudi' %>
+        <%= avail_form.input :friday, as: :boolean, label: 'Vendredi', inline_label: 'Vendredi' %>
+        <%= avail_form.input :saturday, as: :boolean, label: 'Samedi', inline_label: 'Samedi' %>
+        <%= avail_form.input :sunday, as: :boolean, label: 'Dimanche', inline_label: 'Dimanche' %>
+      <% end %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Submit" %>
+    </div>
+  <% end %>
+</div>
+
+
+
+
+
+
+<!--
+
+<div class="container">
+  <h2>Create a new service</h2>
+  <%= simple_form_for(@service) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
       <%= f.input :name,
                   required: true,
                   autofocus: true %>
@@ -14,6 +54,7 @@
       <%= f.input :min_service_day, required: true %>
       <%= f.input :active, as: :select, collection: [['Yes',true], ['No',false]], required: true %>
       <%= f.input :photo, as: :file, required: false %>
+
     </div>
 
     <div class="form-actions">
@@ -22,3 +63,5 @@
   <% end %>
 
 </div>
+
+-->

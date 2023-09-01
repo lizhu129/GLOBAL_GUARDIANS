@@ -4,6 +4,8 @@ class Service < ApplicationRecord
   has_many :reviews, through: :bookings, dependent: :destroy
   belongs_to :user
   has_one_attached :photo
+  has_one :availability, dependent: :destroy
+  accepts_nested_attributes_for :availability
 
   validates :name, presence: true, length: { minimum: 3 }
   validates :description, presence: true
