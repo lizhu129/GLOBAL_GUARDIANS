@@ -1,9 +1,15 @@
 .available-day {
-  background-color: lightgreen;
+  background-color: #c5e9fa;
   display: block;
   text-align: center;
   padding: 5px;
-  border-radius: 4px;
+  border-radius: 12px;
+  border: 1px solid #c5e9fa;
+}
+
+.available-day:hover {
+  background-color: #89b4df;
+  border: 1px solid #89b4df;
 }
 
 .simple-calendar {
@@ -22,18 +28,55 @@
 }
 
 .simple-calendar .today {
-  background-color: #e9ecef;
+  background-color: #b4d2f0;
 }
 
 
 .booking-pending {
-  background-color: #d8c7c7; /* Choisissez une couleur de fond qui convient pour 'pending' */
+  padding: 10px;
+  background-color: #e0aeae;
+  border-radius: 12px;
 }
 
 .booking-accepted {
-  background-color: #c3eccd; /* Choisissez une couleur de fond qui convient pour 'accepted' */
+  padding: 10px;
+  background-color: #c5e9fa;
+  border-radius: 12px;
 }
 
 .booking-declined {
-  background-color: #e6acb1; /* Choisissez une couleur de fond qui convient pour 'declined' */
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #b4b4b4;
+}
+
+.small-text {
+  font-size: 12px;
+  line-height: 1.2;
+  text-align: center;
+  color: #4d4d4d; /* Gray out the text */
+}
+
+
+/* Style for the calendar table */
+.calendar-table-container {
+  overflow-x: auto;
+}
+
+/* Style for the header cells */
+.calendar-day-header {
+  font-weight: bold;
+  background-color: #f0f0f0;
+  text-align: center; /* Center align the text */
+}
+
+/* Style for the calendar day content */
+.calendar-day-content {
+  text-align: center; /* Center align the text */
+  font-size: 14px;
+  color: #999; /* Gray out the text */
+}
+
+.custom-table td {
+  background-color: transparent;
 }
