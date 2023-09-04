@@ -62,6 +62,7 @@
 </div>
 -->
 
+
 <div class="container mt-5">
   <h2>My booking</h2>
 
@@ -71,30 +72,28 @@
 
         <div class="booking-to-validate">
 
-          <div class="card booking-<%= booking.status %>">
-            <!-- Display booking information -->
-            <%= booking.service.name %><br>
-            Provide by: <%= booking.service.user.first_name %><br>
-            Booking by: <%= booking.user.first_name %><br>
-            Status: <%= booking.status %><br>
+          <div class="booking-<%= booking.status %> small-text">
 
-            <!-- Buttons for Accepting or Declining the Booking -->
+            <strong><%= booking.service.name %></strong><br>
+            From <%= booking.service.user.first_name %><br>
+            For <%= booking.user.first_name %><br>
+
             <% if booking.start_date > Date.today && booking.service.user == current_user %>
 
               <% if ["pending", "declined"].include?(booking.status) %>
                 <%= form_with url: accept_booking_path(booking), method: :patch, class: "d-inline-block" do %>
-                  <%= submit_tag "Accept", class: "btn btn-success" %>
+                  <%= submit_tag "V", class: "card-link mt-2" %>
                 <% end %>
               <% end %>
 
               <% if ["accepted", "pending"].include?(booking.status) %>
                 <%= form_with url: decline_booking_path(booking), method: :patch, class: "d-inline-block" do %>
-                  <%= submit_tag "Decline", class: "btn btn-danger" %>
+                   <%= submit_tag "X", class: "card-link mt-2" %>
                 <% end %>
               <% end %>
 
             <% elsif booking.start_date <= Date.today %>
-              <span class="text-danger">Too late to change!</span>
+              <span>Too late to change!</span>
             <% end %>
           </div>
         </div>
