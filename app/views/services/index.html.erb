@@ -21,7 +21,7 @@
                 <p class="badge text-bg-<%= service.active ? "success" : "light"%>">
                   <%=service.active ? "Available" : "Unavailable"%>
                 </p>
-                <p class="card-text font-weight-light text-truncate"><small><%=service.description%></small></p>
+
               </div>
               <% if service.user.image.attached? %>
                 <%= cl_image_tag service.user.image.key, class: "card-trip-user avatar-bordered" %>

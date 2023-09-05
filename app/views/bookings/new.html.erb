@@ -1,10 +1,20 @@
 <div class="container mt-5">
   <h1>New Booking</h1>
 
-  <%= simple_form_for [@service, @booking], local: true do |f| %>
-    <%= f.input :start_date, as: :date, label: 'Start Date', input_html: { readonly: true } %>
-    <%= f.input :end_date, as: :hidden, input_html: { value: @booking.end_date } %>
-    <%= f.button :submit, "Create Booking", class: 'btn btn-primary mt-2' %>
+  <% if @service.user == current_user %>
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="https://res.cloudinary.com/dhvz5quc9/image/upload/v1693945889/angrycat.webp" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Alert!</h5>
+      <p class="card-text">You can't book your own service!</p>
+    </div>
+  </div>
+  <% else %>
+    <%= simple_form_for [@service, @booking], local: true do |f| %>
+      <%= f.input :start_date, as: :date, label: 'Confirm Date', input_html: { readonly: true } %>
+      <%= f.input :end_date, as: :hidden, input_html: { value: @booking.end_date } %>
+      <%= f.button :submit, "Create Booking", class: 'btn btn-primary mt-2' %>
+    <% end %>
   <% end %>
 
   <%= link_to 'Back to the Service', service_path(@service), class: 'btn btn-secondary mt-2' %>
