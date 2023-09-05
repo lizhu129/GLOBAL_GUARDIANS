@@ -74,9 +74,10 @@
 
           <div class="booking-<%= booking.status %> small-text">
 
-            <strong><%= booking.service.name %></strong><br>
+            <strong><a href="<%= service_path(booking.service) %>"><%= booking.service.name %></a></strong><br>
             From <%= booking.service.user.first_name %><br>
             For <%= booking.user.first_name %><br>
+            Cost <%= booking.total_price %>€<br>
 
             <% if booking.start_date > Date.today && booking.service.user == current_user %>
 
