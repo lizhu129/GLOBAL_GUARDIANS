@@ -13,4 +13,11 @@ class Service < ApplicationRecord
   validates :category, presence: true, inclusion: { in: ["Host family", "Babysitter", "Playmate", "Other", "Advise", "Emotionnal support", "Day outing", "Night outing", "Weekend outing"] }
   # WIP temporary removed the default: settings in the validation as it was creating an issue
   validates :active, presence: true, inclusion: { in: [true, false] }#, default: true
+
+  include PgSearch::Model
+  pg_search_scope :search_by_name_and_category,
+  against: [ :name, :category ],
+  using: {
+    tsearch: { prefix: true }
+  }
 end

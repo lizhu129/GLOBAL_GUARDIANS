@@ -2,6 +2,11 @@ class ServicesController < ApplicationController
   def index
     @services = Service.all
     @users = User.all
+
+    if params[:query].present?
+    sql_subquery = "name ILIKE :query OR category ILIKE :query"
+    @services = @services.where(sql_subquery, query: "%#{params[:query]}%")
+    end
   end
 
   def show
@@ -46,5 +51,4 @@ class ServicesController < ApplicationController
   def service_params
     params.require(:service).permit(:name, :description, :price_per_day, :category, :active, :min_service_day, :photo, availability_attributes: [:start_date, :end_date, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday])
   end
-
 end
