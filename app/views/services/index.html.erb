@@ -12,9 +12,9 @@
             <div class="card my-2 mx-1 border-0" style="width: 18rem;">
               <div class="card-body">
                 <% if service.photo.attached? %>
-                  <%= cl_image_tag service.photo.key, class: "card-img-top rounded", alt: "Card image cap" %>
+                  <%= cl_image_tag service.photo.key, class: "card-img-top rounded", alt: "Card image cap", style: "width: 290px; height:193px"%>
                 <% else %>
-                  <img class="card-img-top rounded" src="https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Card image cap" class="card-img-top rounded">
+                  <img class="card-img-top rounded" src="https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Card image cap" class="card-img-top rounded", style:="width: 290px; height:193px">
                 <% end %>
                 <h6 class="card-title mt-3"><%=service.name.capitalize%></h6>
                 <p class="badge text-bg-secondary"><%=service.category%></p>
