@@ -56,7 +56,7 @@ gem 'bootstrap', '~> 5.3.1'
 # gem "image_processing", "~> 1.2"
 gem "cloudinary"
 gem 'simple_calendar'
-
+gem 'pg_search', '~> 2.3', '>= 2.3.6'
 
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
